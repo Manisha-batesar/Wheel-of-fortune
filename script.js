@@ -1,3 +1,5 @@
+const wheelSound = new Audio('./spin-wheel.mp3');
+
 function getResultsAtTop(spinnerElement) {
   if (!spinnerElement) return null;
   
@@ -18,6 +20,8 @@ function wheelOfFortune(node) {
   let previousEndDegree = 0;
 
   spin.addEventListener('click', () => {
+    wheelSound.currentTime = 0; 
+    wheelSound.play();
     if (animation) {
       animation.cancel(); // Reset the animation if it already exists
     }
@@ -29,7 +33,7 @@ function wheelOfFortune(node) {
       { transform: `rotate(${previousEndDegree}deg)` },
       { transform: `rotate(${newEndDegree}deg)` }
     ], {
-      duration: 4000,
+      duration: 3000,
       direction: 'normal',
       easing: 'cubic-bezier(0.440, -0.205, 0.000, 1.130)',
       fill: 'forwards',
@@ -37,7 +41,9 @@ function wheelOfFortune(node) {
     });
 
     previousEndDegree = newEndDegree;
+    console.log(newEndDegree);
     animation.onfinish = () => {
+      wheelSound.pause();
       const currentValue = getResultsAtTop(node);
       spin.textContent = currentValue;
     };
