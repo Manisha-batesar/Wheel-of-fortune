@@ -1,22 +1,24 @@
 body {
   margin: 0%;
   padding: 0%;
-  /* display: flex;
+  display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
-  width: 100vw; */
+  width: 100vw;
 }
 
 .main-container {
   position: relative;
   display: grid;
-  /* width: 70cqi;
-  margin: auto; */
+  width: 90cqi;
+  margin: auto;
+  border: 7px solid #b613d2;
+  border-radius: 50%;
 
   &::after{
     aspect-ratio: 1 / cos(30deg);
-    background-color: rgb(104, 13, 13);
+    background-color: rgb(142, 30, 161);
     clip-path: polygon(50% 100%, 100% 0, 0 0);
     content: "";
     height: 4cqi;
@@ -107,7 +109,7 @@ li {
 button{
   aspect-ratio: 1 / 1;
   background:hsla(0, 0%, 100%, .8);
-  border: 1px solid black;
+  border: 3px solid rgb(40 148 197);
   border-radius: 50%; 
   font-size: 5cqi;
   cursor: pointer;

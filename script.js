@@ -1,14 +1,17 @@
-const wheelSound = new Audio('./spin-wheel.mp3');
+const wheelSound = new Audio('./assets/spin-wheel.mp3');
 
-function getResultsAtTop(spinnerElement) {
-  if (!spinnerElement) return null;
-  
-  const rect = spinnerElement.getBoundingClientRect();
-  const centerX = rect.left + rect.width / 2;
-  const topY = rect.top + (.05 * rect.height); // the arrow is 4%, so we use 5%
-  const element = document.elementFromPoint(centerX, topY);
-  if (element?.parentElement?.parentElement !== spinnerElement) return null;
-  return element?.textContent?.trim() || null;
+// winning function animation
+const loadAnimation = () => {
+  (async (engine) => {
+    await loadConfettiPreset(engine);
+
+    await engine.load({
+      id: "confeti-animation",
+      options: {
+        preset: "confetti",
+      },
+    });
+  })(tsParticles);
 }
 
 function wheelOfFortune(node) {
@@ -20,18 +23,20 @@ function wheelOfFortune(node) {
   let previousEndDegree = 0;
 
   spin.addEventListener('click', () => {
-    wheelSound.currentTime = 0; 
+    wheelSound.currentTime = 0;
     wheelSound.play();
+
     if (animation) {
-      animation.cancel(); // Reset the animation if it already exists
+      animation.cancel();
     }
 
     const randomAdditionalDegrees = Math.random() * 360 + 1800;
+
     const newEndDegree = previousEndDegree + randomAdditionalDegrees;
 
     animation = wheel.animate([
       { transform: `rotate(${previousEndDegree}deg)` },
-      { transform: `rotate(${newEndDegree}deg)` }
+      { transform: `rotate(${newEndDegree}deg)` },
     ], {
       duration: 3000,
       direction: 'normal',
@@ -39,17 +44,14 @@ function wheelOfFortune(node) {
       fill: 'forwards',
       iterations: 1
     });
-
+    
     previousEndDegree = newEndDegree;
-    console.log(newEndDegree);
+
     animation.onfinish = () => {
       wheelSound.pause();
-      const currentValue = getResultsAtTop(node);
-      spin.textContent = currentValue;
+      loadAnimation();
     };
   });
 }
 
-// Usage
-document.querySelectorAll('.main-container').forEach(el => wheelOfFortune(el))
-// wheelOfFortune('.ui-wheel-of-fortune');
+document.querySelectorAll('.main-container').forEach(el => wheelOfFortune(el));
