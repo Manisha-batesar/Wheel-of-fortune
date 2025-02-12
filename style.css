@@ -6,6 +6,7 @@ body {
   justify-content: center;
   height: 100vh;
   width: 100vw;
+  background-image: url(https://img.freepik.com/free-vector/realistic-casino-background_52683-8811.jpg);
 }
 
 .main-container {
@@ -99,7 +100,7 @@ li {
   }
 
   rotate: calc(360deg / var(--items) * calc(var(--index)));
-  background: hsl(calc(360deg / var(--items) * calc(var(--index))), 100%, 55%);
+  background: hsl(calc(360deg / var(--items) * calc(var(--index))), 100%, 70%);
   height: calc((2*pi*53cqi) / var(--items));
   clip-path: polygon(0% -2%, 100% 50%, 0% 102%);  
 }
