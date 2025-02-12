@@ -1,111 +1,117 @@
-* {
+body {
   margin: 0%;
   padding: 0%;
-
-
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
 }
 
 .main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
   position: relative;
+  display: grid;
+  width: 70cqi;
+  margin: auto;
+
+  &::after{
+    aspect-ratio: 1 / cos(30deg);
+    background-color: rgb(104, 13, 13);
+    clip-path: polygon(50% 100%, 100% 0, 0 0);
+    content: "";
+    height: 4cqi;
+    place-self:  start center;
+    scale: 1.4;
+   position: fixed;
+  }
 }
 
-.wheel {
-  height: 300px;
-  width: 100%;
-  max-width: 300px;
-  border: 2px solid black;
-  border-radius: 50%;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15%;
-  position: relative;
-  background-color: bisque;
+.wheel-body {
+  margin: 5cqi;
+  --items: 10;
+  all: unset;
+  aspect-ratio: 1/1;
+  container-type: inline-size;
+  direction: ltr;
+  display: grid;
+  place-content: center start;
+  clip-path: inset(0 0 0 0 round 50%);
+
+  
 }
 
-.borderBox {
-  height: 330px;
-  width: 100%;
-  max-width: 330px;
-  border: 2px solid black;
-  border-radius: 50%;
-  background-color: aquamarine;
-  margin-top: 15%;
-  position: absolute;
+
+
+li {
+  align-content: center;
+  display: grid;
+  font-size: 5cqi;
+  grid-area: 1 /-1;
+  list-style: none;
+  transform-origin: center right;
+  width: 50cqi;
+
+  span {
+    padding-left: 5cqi;
+  }
+
+  /* css gor every li element */
+  &:nth-of-type(1) {
+    --index: 1;
+  }
+
+  &:nth-of-type(2) {
+    --index: 2;
+  }
+
+  &:nth-of-type(3) {
+    --index: 3;
+  }
+
+  &:nth-of-type(4) {
+    --index: 4;
+  }
+
+  &:nth-of-type(5) {
+    --index: 5;
+  }
+
+  &:nth-of-type(6) {
+    --index: 6;
+  }
+
+  &:nth-of-type(7) {
+    --index: 7;
+  }
+
+  &:nth-of-type(8) {
+    --index: 8;
+  }
+
+  &:nth-of-type(9) {
+    --index: 9;
+  }
+
+  &:nth-of-type(10) {
+    --index: 10;
+  }
+
+  rotate: calc(360deg / var(--items) * calc(var(--index)));
+  background: hsl(calc(360deg / var(--items) * calc(var(--index))), 100%, 55%);
+  height: calc((2*pi*53cqi) / var(--items));
+  clip-path: polygon(0% -2%, 100% 50%, 0% 102%);  
 }
 
-.spin {
-  position: absolute;
-  top: 45%;
-  left: 45%;
-  height: 40px;
-  width: 40px;
-  border-radius: 50%;
-}
 
-.arrow {
-  position: absolute;
-  top: 33%;
-  left: 48%;
-  font-size: 40px;
-  font-weight: bolder;
-}
-.wheel .number {
-  background-color: gray;
-  height: 50%;
-  min-width: 60px;
-  background-color: rgb(19, 81, 60);
-}
-.wheel .number:nth-child(3) {
-  position: absolute;
-  top: 0px;
-  left: 45%;
 
+button{
+  aspect-ratio: 1 / 1;
+  background:hsla(0, 0%, 100%, .8);
+  border: 1px solid black;
+  border-radius: 50%; 
+  font-size: 5cqi;
+  cursor: pointer;
+  width: 20cqi;
+  place-self: center;
+  position: absolute  ;
 }
-
-.wheel .number:nth-child(4) {
-  position: absolute;
-  top: 18%;
-  left: 70%;
-  transform: rotate(60deg);
-}
-
-.wheel .number:nth-child(5) {
-  position: absolute;
-  left: 70%;
-  top: 48%;
-transform: rotate(110deg);
-}
-
-.wheel .number:nth-child(6) {
-  position: absolute;
-  left: 86%;
-  top: 75%;
-}
-
-.wheel .number:nth-child(7) {
-  position: absolute;
-  left: 45%;
-  top: 90%;
-}
-
-.wheel .number:nth-child(8) {
-  position: absolute;
-  left: 10%;
-  top: 75%;
-}
-
-.wheel .number:nth-child(9) {
-  position: absolute;
-  left: 2%;
-  top: 48%;
-}
-
-.wheel .number:nth-child(10) {
-  position: absolute;
-  top: 18%;
-  left: 11%;
-}
-
